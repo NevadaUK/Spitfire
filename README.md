@@ -3,9 +3,9 @@
 Dependencies
 - Flask
 - flask_mail
-- PIL
+- Pillow
 - SQLAlchemy
-- Bcrypt 
+- flask-bcrypt
 - flask_login 
 - flask_migrate 
 - wtforms
