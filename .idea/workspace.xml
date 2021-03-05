@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a40a0293-6d62-4737-b282-3411ca534813" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spitfire1/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/Spitfire1/config.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +90,7 @@
       <updated>1614956795560</updated>
       <workItem from="1614956797012" duration="57000" />
       <workItem from="1614960522907" duration="936000" />
-      <workItem from="1614961472065" duration="664000" />
+      <workItem from="1614961472065" duration="967000" />
     </task>
     <servers />
   </component>
@@ -110,6 +110,6 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Spitfire$Spitfire.coverage" NAME="Spitfire Coverage Results" MODIFIED="1614961612526" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/Spitfire$Flask__Spitfire1_.coverage" NAME="Flask (Spitfire1) Coverage Results" MODIFIED="1614961691257" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Spitfire$Flask__Spitfire1_.coverage" NAME="Flask (Spitfire1) Coverage Results" MODIFIED="1614962425372" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>
