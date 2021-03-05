@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container"">
+    <div class="row">
+        <div class="col align-self-center col-12 col-lg-6 col-xl-5 offset-xl-1 hero">
+            <h1 style="background: rgba(0,0,0,0.0);color: var(--gray-dark);">500</h1>
+            <p style="color: var(--dark);">Server Error.</p>
+        </div>
+        <div class="col align-self-center col-md-5 col-lg-5 offset-lg-1 offset-xl-0 d-none d-lg-block phone-holder"><img src="{{ url_for('static', filename='img/empty.svg') }}" style="width: 450px;height: 500px;">
+        </div>
+    </div>
+</div>
+{% endblock content %}

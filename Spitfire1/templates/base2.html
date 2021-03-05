@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    {% if title %}
+    <title>Spitfire WIP - {{ title }}</title>
+    {% else %}
+    <title>Spitfire WIP</title>
+    {% endif %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand bg-light navigation-clean">
+        <div class="container"><a class="navbar-brand" href="{{ url_for('base.home') }}">Spitfire</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"></button>
+          <div class="collapse navbar-collapse" id="navcol-1">
+            {% if current_user.is_authenticated %}
+              {% if current_user.id != 1 %}
+                <a class="btn btn btn-outline-primary ml-auto" href="{{ url_for('users.account') }}">Account</a>
+                <a class="btn btn btn-outline-primary ml-2" href="{{ url_for('users.logout') }}">Logout</a>
+              {% else %}
+                <a class="btn btn btn-outline-primary ml-auto" href="{{ url_for('posts.new_post') }}">New Post</a>
+                <a class="btn btn btn-outline-primary ml-2" href="{{ url_for('users.account') }}">Account</a>
+                <a class="btn btn btn-outline-primary ml-2" href="{{ url_for('users.logout') }}">Logout</a>
+              {% endif %}
+            {% else %}
+              <a class="btn btn btn-outline-primary ml-auto" role="button" href="{{ url_for('users.login') }}">Sign In</a>
+              <a class="btn btn btn-outline-primary ml-2" href="{{ url_for('users.register') }}">Register</a>
+            {% endif %}
+          </div>
+        </div>
+    </nav>
+    <main role="main">
+    <div>
+      <div>
+        {% with messages =  get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+      </div>
+      <div class="col-md-4">
+      </div>
+    </div>
+  </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
