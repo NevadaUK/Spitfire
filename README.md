@@ -11,3 +11,4 @@ Dependencies
 - wtforms
 - flask_wtf
 - email_validator
+- itsdangerous
