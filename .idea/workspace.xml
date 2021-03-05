@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a40a0293-6d62-4737-b282-3411ca534813" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Spitfire1/site.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +90,7 @@
       <updated>1614956795560</updated>
       <workItem from="1614956797012" duration="57000" />
       <workItem from="1614960522907" duration="936000" />
-      <workItem from="1614961472065" duration="473000" />
+      <workItem from="1614961472065" duration="574000" />
     </task>
     <servers />
   </component>
