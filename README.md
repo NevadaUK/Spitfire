@@ -12,3 +12,7 @@ Dependencies
 - flask_wtf
 - email_validator
 - itsdangerous
+
+To Do
+- Comment System
+- File Upload for Tasks
