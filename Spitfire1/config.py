@@ -7,3 +7,5 @@ class Config:
     MAIL_USERNAME = "spitfireappemail@gmail.com"
     MAIL_PASSWORD = "HyO!vBS77d*6j^qWM0"
     UPLOAD_FOLDER = "static/group_files"
+
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
