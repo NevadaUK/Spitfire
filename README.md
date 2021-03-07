@@ -25,5 +25,4 @@ Dependencies
 - itsdangerous
 
 To Do
-- Comment System
 - File Upload for Tasks
