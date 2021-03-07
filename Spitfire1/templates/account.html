@@ -63,6 +63,9 @@
             </fieldset>
             <div class="form-group">
               {{ form.submit(class="btn btn-outline-info") }}
+              {% if current_user.group_id != 0 %}
+                <a class="btn btn-outline-info" href="{{ url_for('users.leavegroup') }}" role="button">Leave Group</a>
+              {% endif %}
             </div>
         </form>
   </div>
