@@ -1,8 +1,8 @@
 from flask import Flask, render_template, url_for, flash, redirect, request, Blueprint
 from flask_login import login_user, current_user, logout_user, login_required
 from Spitfire1 import db
-from Spitfire1.models import User, Group, Task
-from Spitfire1.dash.forms import TaskForm, EditTaskForm
+from Spitfire1.models import User, Group, Task, Comments
+from Spitfire1.dash.forms import TaskForm, EditTaskForm, CommentForm
 from werkzeug.utils import secure_filename
 
 dash = Blueprint("dash", __name__)
@@ -77,8 +77,29 @@ def new_task(group_id):
 def viewtask(task_id, group_id):
     group_id = Group.query.filter_by(id=current_user.group_id).first_or_404()
     task = Task.query.get_or_404(task_id)
-    return render_template("task.html", title=task.TaskName, task=task)
+    page = request.args.get("page", 1, type=int)
+    comments = Comments.query.filter_by(group_id=current_user.group_id, task_id=task_id).order_by(Comments.date_posted.desc()).paginate(page=page, per_page=1)
+    form = CommentForm()
+    if form.validate_on_submit():
+        comment = Comments(
+            content=form.content.data, author=current_user, task_id=task_id, group_id=current_user.group_id
+        )
+        db.session.add(comment)
+        db.session.commit()
+        flash("Comment Created.", "success")
+        return redirect(url_for("dash.taskview", group_id=current_user.group_id))
+    return render_template("task.html", title=task.TaskName, task=task, form=form, comments=comments)
 
+@dash.route(
+    "/dashboard/group/<int:group_id>/task/<int:task_id>/comments", methods=["POST", "GET"]
+)
+@login_required
+def comments(task_id, group_id):
+    group_id = Group.query.filter_by(id=current_user.group_id).first_or_404()
+    task = Task.query.get_or_404(task_id)
+    page = request.args.get("page", 1, type=int)
+    comments = Comments.query.filter_by(group_id=current_user.group_id, task_id=task_id).order_by(Comments.date_posted.desc()).paginate(page=page, per_page=5)
+    return render_template("comments.html", title=task.TaskName + " - Comments", task=task, comments=comments, group_id=current_user.group_id, task_id=task_id)
 
 @dash.route(
     "/dashboard/group/<int:group_id>/completed/task/<int:task_id>",
@@ -88,7 +109,9 @@ def viewtask(task_id, group_id):
 def viewtaskcompleted(task_id, group_id):
     group_id = Group.query.filter_by(id=current_user.group_id).first_or_404()
     task = Task.query.get_or_404(task_id)
-    return render_template("task2.html", title=task.TaskName, task=task)
+    page = request.args.get("page", 1, type=int)
+    comments = Comments.query.filter_by(group_id=current_user.group_id, task_id=task_id).order_by(Comments.date_posted.desc()).paginate(page=page, per_page=1)
+    return render_template("task2.html", title=task.TaskName, task=task, comments=comments)
 
 
 @dash.route(

@@ -18,6 +18,7 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(60), nullable=False)
     posts = db.relationship("Post", backref="author", lazy=True)
     tasks = db.relationship("Task", backref="author", lazy=True)
+    comments = db.relationship("Comments", backref="author", lazy=True)
     group_id = db.Column(db.Integer, db.ForeignKey("group.id"), default=0)
 
     def get_reset_token(self, expires_sec=1800):
@@ -63,3 +64,11 @@ class Task(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
     group_id = db.Column(db.Integer, db.ForeignKey("group.id"))
     completed = db.Column(db.Boolean, nullable=False, default=False)
+
+class Comments(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    content = db.Column(db.Text, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
+    task_id = db.Column(db.Integer, db.ForeignKey("task.id"), nullable=False)
+    group_id = db.Column(db.Integer, db.ForeignKey("group.id"), nullable=False)

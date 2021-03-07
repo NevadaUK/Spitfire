@@ -18,6 +18,42 @@
         <p class="article-content">{{ task.content }}</p>
       </div>
     </article>
+    <div class="">
+        <form action="" method="POST">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">{{ legend }}</legend>
+                <div class="form-group">
+                  {{ form.content.label(class="form-control-label") }}
+                  {% if form.content.errors %}
+                    {{ form.content(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.content.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                  {% else %}
+                    {{ form.content(class="form-control form-control-lg") }}
+                  {% endif %}
+                </div>
+            </fieldset>
+            <div class="form-group">
+              {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+    </div>
+    <article class="media">
+      {% for comments in comments.items %}
+      <div class="media-body">
+        <div class="article-metadata">
+            <label for="form-control-label form-control-lg">Latest Comment</label>
+        </div>
+        <a class="mr-2" href="">{{ comments.author.username }}</a>
+        <p class="">{{ comments.content }}</p>
+        <a class="btn btn-outline-info" href="{{ url_for('dash.comments', task_id=task.id, group_id=current_user.group_id) }}">All Comments</a>
+        {% endfor %}
+      </div>
+    </article>
       <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">

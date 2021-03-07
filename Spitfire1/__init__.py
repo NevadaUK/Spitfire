@@ -8,7 +8,7 @@ from Spitfire1.config import Config
 
 db = SQLAlchemy()
 bcrypt = Bcrypt()
-migrate = Migrate()
+migrate = Migrate(compare_type=True)
 login_manager = LoginManager()
 login_manager.login_view = "users.login"
 login_manager.login_message_category = "info"

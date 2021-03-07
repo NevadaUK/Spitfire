@@ -81,6 +81,14 @@ def account():
         "account.html", title="Account Management", image_file=image_file, form=form
     )
 
+@users.route("/account/leavegroup")
+@login_required
+def leavegroup():
+    current_user.group_id = 0
+    db.session.commit()
+    flash("You have left a group.", "danger")
+    return redirect(url_for("users.account"))
+
 
 @users.route("/user/<string:username>")
 def user_posts(username):

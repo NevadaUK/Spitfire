@@ -17,7 +17,7 @@ from Spitfire1.models import User, Group
 
 class TaskForm(FlaskForm):
     title = StringField("Title", validators=[DataRequired()])
-    content = TextAreaField("Update Content", validators=[DataRequired()])
+    content = TextAreaField("Task Content and Instructions", validators=[DataRequired()])
     submit = SubmitField("Post")
 
 
@@ -25,4 +25,8 @@ class EditTaskForm(FlaskForm):
     title = StringField("Title", validators=[DataRequired()])
     content = TextAreaField("Update Content", validators=[DataRequired()])
     files = MultipleFileField("Files")
+    submit = SubmitField("Post")
+
+class CommentForm(FlaskForm):
+    content = TextAreaField("Comment", validators=[DataRequired()])
     submit = SubmitField("Post")

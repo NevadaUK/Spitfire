@@ -1,0 +1,26 @@
+{% extends "base3.html" %}
+{% block content %}
+<h1>Comments for {{ task.TaskName }}</h1>
+  {% for comments in comments.items %}
+    <article class="media">
+      <div class="media-body">
+        <div class="article-metadata">
+            <a class="mr-2" href="">{{ comments.author.username }}</a>
+            <small class="text-muted">{{ comments.date_posted.strftime('%d-%m-%Y') }}</small>
+        </div>
+        <p class="article-content">{{ comments.content }}</p>
+      </div>
+    </article>
+  {% endfor %}
+  {% for page_num in comments.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+    {% if page_num %}
+      {% if comments.page == page_num %}
+        <a class="btn btn-info mb-4" href="{{ url_for('dash.comments', page=page_num, group_id=current_user.group_id, task_id=task_id) }}">{{ page_num }}</a>
+      {% else %}
+        <a class="btn btn-outline-info mb-4" href="{{ url_for('dash.comments', page=page_num, group_id=current_user.group_id, task_id=task_id) }}">{{ page_num }}</a>
+      {% endif %}
+    {% else %}
+      ...
+    {% endif %}
+  {% endfor %}
+{% endblock content %}

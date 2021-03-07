@@ -12,7 +12,7 @@
 
 <body>
   <div class="intro">
-      <h3 class="text-center">{{ group_id.groupname }} Dashboard</h3>
+      <h1 class="text-center">{{ group_id.groupname }} Dashboard</h1>
   </div>
   <div class="row">
       <div class="col-md-6 col-xl-3 mb-4">
@@ -69,7 +69,6 @@
                   <div class="row align-items-center no-gutters">
                       <div class="col mr-2">
                           <a href="{{ url_for('dash.taskview', group_id=current_user.group_id) }}" class="text-uppercase text-warning font-weight-bold text-xs mb-1"><span>View Uncompleted Tasks</span></a>
-                          <a href="{{ url_for('dash.new_task', group_id=current_user.group_id) }}" class="text-dark font-weight-bold h5 mb-0 mr-3">Create Task</a>
                       </div>
                       <div class="col-auto"><i class="fas fa-comments fa-2x text-gray-300"></i></div>
                   </div>
