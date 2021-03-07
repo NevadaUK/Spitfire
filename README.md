@@ -1,4 +1,5 @@
 # Spitfire
+A website made in flask.
 ## Install Process
 ```shell
 git clone https://github.com/NevadaUK/Spitfire
