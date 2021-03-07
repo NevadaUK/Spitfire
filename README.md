@@ -12,7 +12,7 @@ poetry run flask run
 ```
 
 
-Dependencies
+Dependencies - Poetry will install them automatically.
 - Flask
 - flask_mail
 - Pillow
