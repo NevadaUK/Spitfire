@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "spitfire"
+version = "0.1.0"
+description = ""
+authors = ["Nevada"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+Flask = "^1.1.2"
+Flask-Mail = "^0.9.1"
+Pillow = "^8.1.1"
+SQLAlchemy = "^1.3.23"
+Flask-Login = "^0.5.0"
+Flask-Migrate = "^2.7.0"
+WTForms = "^2.3.3"
+Flask-WTF = "^0.14.3"
+email-validator = "^1.1.2"
+itsdangerous = "^1.1.0"
+Flask-Bcrypt = "^0.7.1"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

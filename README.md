@@ -1,11 +1,22 @@
 # Spitfire
+## Install Process
+```shell
+git clone https://github.com/NevadaUK/Spitfire
+cd Spitfire
+pip install poetry
+poetry install
+poetry run flask db init
+
+poetry run flask run
+```
+
 
 Dependencies
 - Flask
 - flask_mail
-- PIL
+- Pillow
 - SQLAlchemy
-- Bcrypt 
+- flask-bcrypt
 - flask_login 
 - flask_migrate 
 - wtforms
