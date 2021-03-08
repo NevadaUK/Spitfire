@@ -143,3 +143,4 @@ cython_debug/
 *.db
 Spitfire1/config.py
 Spitfire1/EnvVar.py
+Spitfire1/config.py
