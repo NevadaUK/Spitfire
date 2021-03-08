@@ -25,8 +25,9 @@
         </div>
         <a class="mr-2" href="">{{ comments.author.username }}</a>
         <p class="">{{ comments.content }}</p>
-        <a class="btn btn-outline-info" href="{{ url_for('dash.comments', task_id=task.id, group_id=current_user.group_id) }}">All Comments</a>
         {% endfor %}
+        <a class="btn btn-outline-info" href="{{ url_for('dash.comments', task_id=task.id, group_id=current_user.group_id) }}">All Comments</a>
+        <a class="btn btn-outline-info" href="{{ url_for('dash.viewfiles', task_id=task.id, group_id=current_user.group_id) }}">Manage Attched Files</a>
     </article>
       <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">

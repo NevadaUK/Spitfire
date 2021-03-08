@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from flask_wtf.file import FileField, FileAllowed
+from flask_wtf.file import FileField, FileAllowed, FileRequired
 from wtforms import (
     StringField,
     PasswordField,
@@ -28,5 +28,9 @@ class EditTaskForm(FlaskForm):
     submit = SubmitField("Post")
 
 class CommentForm(FlaskForm):
-    content = TextAreaField("Comment", validators=[DataRequired()])
-    submit = SubmitField("Post")
+    content = TextAreaField("Add Comment", validators=[DataRequired()])
+    submit = SubmitField("Post Comment")
+
+class UploadFileForm(FlaskForm):
+    file = FileField("Attach Files", validators=[FileRequired()])
+    submit = SubmitField("Upload")

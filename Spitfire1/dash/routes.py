@@ -1,9 +1,11 @@
-from flask import Flask, render_template, url_for, flash, redirect, request, Blueprint
+from flask import Flask, render_template, url_for, flash, redirect, request, Blueprint, current_app, send_from_directory
 from flask_login import login_user, current_user, logout_user, login_required
 from Spitfire1 import db
-from Spitfire1.models import User, Group, Task, Comments
-from Spitfire1.dash.forms import TaskForm, EditTaskForm, CommentForm
+from Spitfire1.models import User, Group, Task, Comments, Files
+from Spitfire1.dash.forms import TaskForm, EditTaskForm, CommentForm, UploadFileForm
 from werkzeug.utils import secure_filename
+import os
+from flask import current_app
 
 dash = Blueprint("dash", __name__)
 
@@ -185,3 +187,45 @@ def delete_task(task_id, group_id):
     db.session.commit()
     flash("Task Deleted.", "danger")
     return redirect(url_for("dash.taskview", group_id=current_user.group_id))
+
+@dash.route(
+    "/dashboard/group/<int:group_id>/task/<int:task_id>/files", methods=["POST", "GET"]
+)
+@login_required
+def viewfiles(task_id, group_id):
+    group_id = Group.query.filter_by(id=current_user.group_id).first_or_404()
+    task = Task.query.get_or_404(task_id)
+    files = Files.query.filter_by(group_id=2313424, task_id=1).order_by(Files.date_posted.desc())
+    return render_template("FileView.html", title=task.TaskName + " - Files", task=task, files=files, task_id=task.id)
+
+
+@dash.route("/dashboard/group/<int:group_id>/task/<int:task_id>/fileupload", methods=["GET", "POST"])
+@login_required
+def uploadfile(group_id, task_id):
+    task = Task.query.get_or_404(task_id)
+    form = UploadFileForm()
+    if form.validate_on_submit():
+        if form.file.data:
+            filename = secure_filename(form.file.data.filename)
+            form.file.data.save(os.path.join(current_app.root_path, "static/group_files", filename))
+            file = Files(
+                file_name=filename,
+                user_id=current_user.id,
+                task_id=task.id,
+                group_id=current_user.group_id,
+            )
+            db.session.add(file)
+            db.session.commit()
+        flash("File Uploaded.", "success")
+        return redirect(url_for("dash.viewtask", group_id=current_user.group_id, task_id=task_id))
+    return render_template("uploadfile.html", title="Upload File", form=form, legend="Upload File", task=task)
+
+@dash.route(
+    "/dashboard/group/<int:group_id>/task/<int:task_id>/files/download/<string:filename>", methods=["POST", "GET"]
+)
+@login_required
+def downloadfile(task_id, group_id, filename):
+    group_id = Group.query.filter_by(id=current_user.group_id).first_or_404()
+    task = Task.query.get_or_404(task_id)
+    location = os.path.join(current_app.root_path, "static/group_files")
+    return send_from_directory(directory=location, filename=filename, as_attachment=True)
