@@ -24,6 +24,3 @@ Dependencies - Poetry will install them automatically.
 - flask_wtf
 - email_validator
 - itsdangerous
-
-To Do
-- File Upload for Tasks
