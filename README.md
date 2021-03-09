@@ -1,5 +1,5 @@
 # Spitfire
-A website made in flask.
+A remote working management tool in flask
 ## Install Process
 ```shell
 git clone https://github.com/NevadaUK/Spitfire
