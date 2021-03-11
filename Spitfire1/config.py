@@ -1,5 +1,4 @@
 import os
-from Spitfire1.EnvVar import EnviromentVariables
 
 
 class Config:
