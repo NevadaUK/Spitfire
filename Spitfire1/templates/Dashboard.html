@@ -49,11 +49,11 @@
                           <div class="text-uppercase text-info font-weight-bold text-xs mb-1"><span>Progress on all Tasks</span></div>
                           <div class="row no-gutters align-items-center">
                               <div class="col-auto">
-                                  <div class="text-dark font-weight-bold h5 mb-0 mr-3"><span>{{ taskpercentage }}%</span></div>
+                                  <div class="text-dark font-weight-bold h5 mb-0 mr-3"><span>{{ 100 - taskpercentage }}%</span></div>
                               </div>
                               <div class="col">
                                   <div class="progress progress-sm">
-                                      <div class="progress-bar bg-info" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: {{ taskpercentage }}%;"><span class="sr-only">50%</span></div>
+                                      <div class="progress-bar bg-info" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: {{ 100 - taskpercentage }}%;"><span class="sr-only">50%</span></div>
                                   </div>
                               </div>
                           </div>
