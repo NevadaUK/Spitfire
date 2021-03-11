@@ -33,7 +33,7 @@
               <div class="card-body">
                   <div class="row align-items-center no-gutters">
                       <div class="col mr-2">
-                          <div class="text-uppercase text-warning font-weight-bold text-xs mb-1"><span>Members in Group</span></div>
+                          <a href="{{ url_for('dash.viewusers', group_id=current_user.group_id) }}" class="text-uppercase text-warning font-weight-bold text-xs mb-1"><span>Members in Group</span></a>
                           <div class="text-dark font-weight-bold h5 mb-0"><span>{{ ammount.count() }}</span></div>
                       </div>
                       <div class="col-auto"><i class="fas fa-comments fa-2x text-gray-300"></i></div>
@@ -49,11 +49,11 @@
                           <div class="text-uppercase text-info font-weight-bold text-xs mb-1"><span>Progress on all Tasks</span></div>
                           <div class="row no-gutters align-items-center">
                               <div class="col-auto">
-                                  <div class="text-dark font-weight-bold h5 mb-0 mr-3"><span>0%</span></div>
+                                  <div class="text-dark font-weight-bold h5 mb-0 mr-3"><span>{{ taskpercentage }}%</span></div>
                               </div>
                               <div class="col">
                                   <div class="progress progress-sm">
-                                      <div class="progress-bar bg-info" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"><span class="sr-only">50%</span></div>
+                                      <div class="progress-bar bg-info" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: {{ taskpercentage }}%;"><span class="sr-only">50%</span></div>
                                   </div>
                               </div>
                           </div>
@@ -69,6 +69,7 @@
                   <div class="row align-items-center no-gutters">
                       <div class="col mr-2">
                           <a href="{{ url_for('dash.taskview', group_id=current_user.group_id) }}" class="text-uppercase text-warning font-weight-bold text-xs mb-1"><span>View Uncompleted Tasks</span></a>
+                          <div href="{{ url_for('dash.new_task', group_id=current_user.group_id) }}" class="text-dark font-weight-bold h5 mb-0 mr-3"><a class="text-dark font-weight-bold" href="#">&nbsp</a></div>
                       </div>
                       <div class="col-auto"><i class="fas fa-comments fa-2x text-gray-300"></i></div>
                   </div>
@@ -76,23 +77,32 @@
           </div>
       </div>
   </div>
-    <div class="table-responsive">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Task List&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for task in tasks %}
-                <tr>
-                    <td href="">{{ task.TaskName }}<a href="{{ url_for('dash.viewtaskcompleted', group_id=current_user.group_id, task_id= task.id) }}" class="btn btn-link btn-sm font-weight-bold h5 mb-0">View Task</a></td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    </div>
+  <div class="table-responsive">
+      <table class="table">
+          <thead>
+              <tr>
+                  <th>Task Name</th>
+                  <th>Task Author</th>
+                  <th>Date Posted</th>
+                  <th>Comments</th>
+                  <th>Files Attached</th>
+                  <th>Task Details</th>
+              </tr>
+          </thead>
+          <tbody>
+          {% for task in tasks %}
+              <tr>
+                  <td href="">{{ task.TaskName }}</td>
+                  <td href="">{{ task.author.username }}</td>
+                  <td href="">{{ task.date_posted }}</td>
+                  <td href="">{{ comments.query.filter_by(group_id=current_user.group_id, task_id=task.id).count() }}</td>
+                  <td href="">{{ files.query.filter_by(group_id=current_user.group_id, task_id=task.id).count() }}</td>
+                  <td href=""><a href="{{ url_for('dash.viewtaskcompleted', group_id=current_user.group_id, task_id= task.id) }}" class="btn btn-link btn-sm font-weight-bold h5 mb-0">View Task</a></td>
+              </tr>
+          {% endfor %}
+          </tbody>
+      </table>
+  </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
     <script src="{{ url_for('static', filename='js/bs-init.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>

@@ -11,25 +11,21 @@
 
 <body>
   <div class="intro">
-      <h1 class="text-center">{{ task.TaskName }} - Files Uploaded</h1>
+      <h1 class="text-center">{{ group.groupname }} - Users</h1>
   </div>
     <div class="table-responsive">
         <table class="table">
             <thead>
                 <tr>
-                    <th>File Name</th>
-                    <th>Uploaded By</th>
-                    <th>Date Uploaded</th>
-                    <th>Download Link</th>
+                    <th>Username</th>
+                    <th>Contact Email</th>
                 </tr>
             </thead>
             <tbody>
-            {% for file in files %}
+            {% for user in users %}
                 <tr>
-                    <td href="">{{ file.file_name }}</td>
-                    <td href="">{{ User.query.filter_by(id=file.user_id).first().username }}</td>
-                    <td href="">{{ file.date_posted }}</td>
-                    <td href=""><a href="{{ url_for('dash.downloadfile', task_id=task.id, group_id=current_user.group_id, filename=file.file_name) }}" class="btn btn-link btn-sm font-weight-bold h5 mb-0">File Download</a></td>
+                    <td href="">{{ user.username }}</td>
+                    <td href="">{{ user.email }}</td>
                 </tr>
             {% endfor %}
             </tbody>
