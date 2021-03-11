@@ -1,4 +1,5 @@
 # Spitfire
+A remote working management tool in flask
 ## Install Process
 ```shell
 git clone https://github.com/NevadaUK/Spitfire
@@ -11,7 +12,7 @@ poetry run flask run
 ```
 
 
-Dependencies
+Dependencies - Poetry will install them automatically.
 - Flask
 - flask_mail
 - Pillow
@@ -23,7 +24,3 @@ Dependencies
 - flask_wtf
 - email_validator
 - itsdangerous
-
-To Do
-- Comment System
-- File Upload for Tasks
