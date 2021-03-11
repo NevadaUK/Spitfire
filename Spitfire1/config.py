@@ -1,4 +1,5 @@
 import os
+from Spitfire1.EnvVar import EnviromentVariables
 
 
 class Config:
@@ -10,5 +11,6 @@ class Config:
     MAIL_USERNAME = "spitfireappemail@gmail.com"
     MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
     UPLOAD_FOLDER = "static/group_files"
+
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False

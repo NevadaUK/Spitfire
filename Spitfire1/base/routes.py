@@ -16,3 +16,11 @@ def home():
     return render_template(
         "homepage.html", posts1=posts[0], posts2=posts[1], posts3=posts[2]
     )
+
+@base.route("/TermsandConditions")
+def TsandCs():
+    return render_template("termsandconditions.html", title="About")
+
+@base.route("/PrivacyPolicy")
+def PrivPol():
+    return render_template("privacypolicy.html", title="About")
