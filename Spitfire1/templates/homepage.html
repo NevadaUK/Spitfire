@@ -20,7 +20,7 @@
             <div class="row">
                 <div class="col-12 col-lg-6 col-xl-5 offset-xl-1 hero">
                     <h1 style="background: rgba(0,0,0,0.0);color: var(--gray-dark);">Spitfire Remote Working</h1>
-                    <p style="color: var(--dark);">Mauris egestas tellus non ex condimentum, ac ullamcorper sapien dictum. Nam consequat neque quis sapien viverra convallis. In non tempus lorem. </p>
+                    <p style="color: var(--dark);">Spitfire is a remote working tool designed for use by small teams, businesses and anything between. Created as an A-Level coursework project.  </p>
                     {% if current_user.is_authenticated %}
                     <a class="btn btn-light btn-lg action-button" type="button" href="{{ url_for('dash.taskview', group_id=current_user.group_id) }}" style="border-color: var(--blue);background: var(--blue);">Go to Dashboard</a>
                     {% else %}
@@ -74,7 +74,7 @@
                     </div>
                     <div class="col-sm-6 col-lg-4 item"><i class="fa fa-list-alt icon"></i>
                         <h3 class="name">Simplistic Design</h3>
-                        <p class="description">Spitfire is designed so that anyone can use it, reguardless of technical expertise.</p>
+                        <p class="description">Spitfire is designed so that anyone can use it, regardless of technical expertise.</p>
                     </div>
                 </div>
             </div>
@@ -84,8 +84,8 @@
             <ul class="list-inline">
                 <li class="list-inline-item"><a href="{{ url_for('base.home') }}">Home</a></li>
                 <li class="list-inline-item"><a href="{{ url_for('base.about') }}">About</a></li>
-                <li class="list-inline-item"><a href="/TsANDCs">Terms</a></li>
-                <li class="list-inline-item"><a href="PP">Privacy Policy</a></li>
+                <li class="list-inline-item"><a href="{{ url_for('base.TsandCs') }}">Terms</a></li>
+                <li class="list-inline-item"><a href="{{ url_for('base.PrivPol') }}">Privacy Policy</a></li>
             </ul>
             <p class="copyright">Spitfire App&nbsp;</p>
         </footer>

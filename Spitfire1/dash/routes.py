@@ -91,6 +91,8 @@ def new_task(group_id):
 def viewtask(task_id, group_id):
     group_id = Group.query.filter_by(id=current_user.group_id).first_or_404()
     task = Task.query.get_or_404(task_id)
+    if task.completed == True:
+        return redirect(url_for("dash.taskview", group_id=current_user.group_id))
     page = request.args.get("page", 1, type=int)
     comments = Comments.query.filter_by(group_id=current_user.group_id, task_id=task_id).order_by(Comments.date_posted.desc()).paginate(page=page, per_page=1)
     form = CommentForm()
@@ -123,6 +125,8 @@ def comments(task_id, group_id):
 def viewtaskcompleted(task_id, group_id):
     group_id = Group.query.filter_by(id=current_user.group_id).first_or_404()
     task = Task.query.get_or_404(task_id)
+    if task.completed == False:
+        return redirect(url_for("dash.taskviewcompleted", group_id=current_user.group_id))
     page = request.args.get("page", 1, type=int)
     comments = Comments.query.filter_by(group_id=current_user.group_id, task_id=task_id).order_by(Comments.date_posted.desc()).paginate(page=page, per_page=1)
     return render_template("task2.html", title=task.TaskName, task=task, comments=comments)
