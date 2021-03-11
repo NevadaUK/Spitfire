@@ -65,6 +65,9 @@
               {{ form.submit(class="btn btn-outline-info") }}
               {% if current_user.group_id != 0 %}
                 <a class="btn btn-outline-info" href="{{ url_for('users.leavegroup') }}" role="button">Leave Group</a>
+              {% else %}
+                <a class="btn btn-outline-info" href="{{ url_for('groups.creategroup') }}" role="button">Create Group</a>
+                <a class="btn btn-outline-info" href="{{ url_for('groups.joingroup') }}" role="button">Join Group</a>
               {% endif %}
             </div>
         </form>

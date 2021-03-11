@@ -19,6 +19,9 @@ def taskview(group_id):
     tasks = Task.query.filter_by(group_id=group_id.id, completed=False).order_by(
         Task.date_posted.desc()
     )
+    tasksall = Task.query.filter_by(group_id=group_id.id)
+    tasksnotcomlpeted = tasksall.filter_by(completed=False)
+    taskpercentage = tasksnotcomlpeted.count()/tasksall.count()*100
     ammount = User.query.filter_by(group_id=current_user.group_id)
     return render_template(
         "dashboard.html",
@@ -26,6 +29,9 @@ def taskview(group_id):
         tasks=tasks,
         ammount=ammount,
         title="Dashboard",
+        comments = Comments,
+        files = Files,
+        taskpercentage = int(taskpercentage)
     )
 
 
@@ -39,6 +45,9 @@ def taskviewcompleted(group_id):
     tasks = Task.query.filter_by(group_id=group_id.id, completed=True).order_by(
         Task.date_posted.desc()
     )
+    tasksall = Task.query.filter_by(group_id=group_id.id)
+    tasksnotcomlpeted = tasksall.filter_by(completed=False)
+    taskpercentage = tasksnotcomlpeted.count()/tasksall.count()*100
     ammount = User.query.filter_by(group_id=current_user.group_id)
     return render_template(
         "dashboard2.html",
@@ -46,6 +55,9 @@ def taskviewcompleted(group_id):
         tasks=tasks,
         ammount=ammount,
         title="Dashboard",
+        comments = Comments,
+        files = Files,
+        taskpercentage = int(taskpercentage)
     )
 
 
@@ -195,8 +207,8 @@ def delete_task(task_id, group_id):
 def viewfiles(task_id, group_id):
     group_id = Group.query.filter_by(id=current_user.group_id).first_or_404()
     task = Task.query.get_or_404(task_id)
-    files = Files.query.filter_by(group_id=2313424, task_id=1).order_by(Files.date_posted.desc())
-    return render_template("FileView.html", title=task.TaskName + " - Files", task=task, files=files, task_id=task.id)
+    files = Files.query.filter_by(group_id=2313424, task_id=task.id).order_by(Files.date_posted.desc())
+    return render_template("FileView.html", title=task.TaskName + " - Files", task=task, files=files, task_id=task.id, User=User)
 
 
 @dash.route("/dashboard/group/<int:group_id>/task/<int:task_id>/fileupload", methods=["GET", "POST"])
@@ -229,3 +241,12 @@ def downloadfile(task_id, group_id, filename):
     task = Task.query.get_or_404(task_id)
     location = os.path.join(current_app.root_path, "static/group_files")
     return send_from_directory(directory=location, filename=filename, as_attachment=True)
+
+@dash.route(
+    "/dashboard/group/<int:group_id>/viewusers", methods=["POST", "GET"]
+)
+@login_required
+def viewusers(group_id):
+    group = Group.query.filter_by(id=current_user.group_id).first_or_404()
+    users = User.query.filter_by(group_id=current_user.group_id).order_by(User.id.desc())
+    return render_template("listusers.html", title=group.groupname + " - Users", group_id=current_user.group_id, group=group, users=users)

@@ -23,3 +23,12 @@ class CreateGroupForm(FlaskForm):
         groupid = Group.query.filter_by(group_id=group_id.data).first()
         if groupid:
             raise ValidationError("A Group with that ID already exists.")
+
+class JoinGroupForm(FlaskForm):
+    group_id = IntegerField("Group ID", validators=[DataRequired()])
+    submit = SubmitField("Join Group")
+
+    def validate_groupID(self, group_id):
+        groupid != Group.query.filter_by(group_id=group_id.data).first()
+        if groupid:
+            raise ValidationError("Group doesn't exist.")
