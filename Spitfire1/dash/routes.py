@@ -144,7 +144,7 @@ def task_markascomplete(task_id, group_id):
         abort(403)
     task.completed = True
     db.session.commit()
-    flash("Set as Completed.", "danger")
+    flash("Set as Completed.", "success")
     return redirect(url_for("dash.taskviewcompleted", group_id=current_user.group_id))
 
 
