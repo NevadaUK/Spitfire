@@ -21,7 +21,10 @@ def taskview(group_id):
     )
     tasksall = Task.query.filter_by(group_id=group_id.id)
     tasksnotcomlpeted = tasksall.filter_by(completed=False)
-    taskpercentage = tasksnotcomlpeted.count()/tasksall.count()*100
+    if tasksall.count() == 0:
+        taskpercentage = 100
+    else:
+        taskpercentage = tasksnotcomlpeted.count()/tasksall.count()*100
     ammount = User.query.filter_by(group_id=current_user.group_id)
     return render_template(
         "dashboard.html",
@@ -47,7 +50,10 @@ def taskviewcompleted(group_id):
     )
     tasksall = Task.query.filter_by(group_id=group_id.id)
     tasksnotcomlpeted = tasksall.filter_by(completed=False)
-    taskpercentage = tasksnotcomlpeted.count()/tasksall.count()*100
+    if tasksall.count() == 0:
+        taskpercentage = 100
+    else:
+        taskpercentage = tasksnotcomlpeted.count()/tasksall.count()*100
     ammount = User.query.filter_by(group_id=current_user.group_id)
     return render_template(
         "dashboard2.html",
@@ -211,7 +217,7 @@ def delete_task(task_id, group_id):
 def viewfiles(task_id, group_id):
     group_id = Group.query.filter_by(id=current_user.group_id).first_or_404()
     task = Task.query.get_or_404(task_id)
-    files = Files.query.filter_by(group_id=2313424, task_id=task.id).order_by(Files.date_posted.desc())
+    files = Files.query.filter_by(group_id=current_user.group_id, task_id=task.id).order_by(Files.date_posted.desc())
     return render_template("FileView.html", title=task.TaskName + " - Files", task=task, files=files, task_id=task.id, User=User)
 
 
