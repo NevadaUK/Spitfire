@@ -1,5 +1,5 @@
 # Spitfire
-A remote work organisation tool made in flask
+A remote work organisation tool made in flask.
 ## Install Process
 ```shell
 git clone https://github.com/NevadaUK/Spitfire
